@@ -1,7 +1,6 @@
 mmd_tools (powroupi fork) must be installed for this add-on to work.
 
 All of the operators in this add-on have "flexible selection". An MMD model has a root/empty object, an armature object, and one or more mesh objects. It does not matter which of these is selected to be the active object. All operators in this mmd_tools_helper add-on are programmed to automatically find the correct part of the MMD model that it should operate on. 
-(The only exception to this are the enable, disable, and reset morph slider operators which act only on the active object.)
 
 
 Panels and buttons from top to bottom:
