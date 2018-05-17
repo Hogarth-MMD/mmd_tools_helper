@@ -1,0 +1,72 @@
+mmd_tools (powroupi fork) must be installed for this add-on to work.
+
+All of the operators in this add-on have "flexible selection". An MMD model has a root/empty object, an armature object, and one or more mesh objects. It does not matter which of these is selected to be the active object. All operators in this mmd_tools_helper add-on are programmed to automatically find the correct part of the MMD model that it should operate on. 
+(The only exception to this are the enable, disable, and reset morph slider operators which act only on the active object.)
+
+
+Panels and buttons from top to bottom:
+
+MMD View button
+Convenient one-click setup of camera, grid and background color.
+
+MMD Lamp button 
+Convenient one-click setup of Lamp. 
+
+Convert MMD Camera to Blender Camera button
+An mmd_tools "MMD camera" is child of an "MMD camera" empty object and it is also different from a normal Blender camera in other ways. You can convert all "MMD cameras" in the scene back to normal Blender cameras by clicking this button.
+
+MMD background Color Picker
+Selects a color for the world background. A background text color is automatically chosen to contrast with this background color.
+
+Bones Renamer
+Select the source and destination armature types. Then click the button to do a mass renaming of bones from one armature type to another. After renaming a diagnostic list or missing bone names is printed to the Blender System Console. A time-saver when converting models or animations from one format to another. There are 15 supported armature types.
+
+Add foot leg IK to MMD model
+Convenient one-click adding of IK bones and constraints to an MMD model, a useful time-saver when  converting models to MMD from other software. If the model already has foot-leg IK, the IK will be removed and replaced with new IK, so this operator can also be used to automatically fix foot-leg IK errors of an MMD model. The model must have MMD standard names of leg and foot bones.
+
+Add Hand Arm IK to MMD model
+Adds hand-arm IK to an MMD model. Please note that this operator has the following limitations: 
+The model must have MMD standard names of arm and hand bones.
+It won't work correctly if an arm-twist bone is a parent bone of one of the arm bones.
+If an MMD model has hand-arm IK, its arm bones cannot be animated by normal VMD animations.
+
+Create Display Panel Groups and Add Items
+Automatically creates MMD Display Panel Groups and automatically adds all bones and morphs of a model to the Display Panel groups. Useful time-saver when converting a model to MMD from other software. It can also be used to automatically correct display panel errors of an MMD model.
+3 options:
+No change (does nothing).
+Add Display Panel Groups from Bone Groups 
+Add Display Panel Groups
+
+MMD Create Toon Material Nodes button
+Adds node editor material nodes for the rendering of Toon Textures in Blender for an MMD model which has been imported with mmd_tools(powroupi fork).
+
+Toon modifier blend type dropdown menu
+Toon modifier color picker
+Modify Toon button
+Modifies the color of shadows of an mmd_model after running the "MMD Create Toon Material Nodes" operator has already created material nodes for the MMD model.
+
+Reverse Japanese and English names
+Reverses the Japanese and English names of bones, shape keys and materials. The Japanese names become English names and the English names become Japanese names. If a Japanese name has no English name, it just stays the same. For someone who does not know Japanese, this operator can make it easier to edit an MMD model in Blender.
+
+Armature Diagnostic
+Select a bone map from the list menu, then click the button. A list of the bone names, which are missing from the armature, is printed to the Blender System Console.
+
+
+Miscellaneous Tools Panel
+4 tools which may be helpful time-savers when converting character models to MMD. These 4 tools are:
+
+Combine 2 bones
+Combines a parent-child pair of bones and their vertex groups to 1 bone and 1 vertex group.
+For this operator to run, exactly 2 bones must be selected, and one bone must be parent of the other bone.
+ 
+Delete unused bones and unused vertex groups 
+Deletes all bones and all vertex groups which have the word 'unused' (or Unused or UnUsEd or etc.) in them.
+
+All materials MMD ambient color white 
+Change the MMD ambient color of all materials to maximum white.
+
+Correct MMD Root and Center bones
+This correction only works on a model which has mmd_english bone names, so you may need to do a mass renaming of bones to mmd_english before running this operator. If an MMD model has no root bone (a.k.a. mother bone a.k.a. master parent bone), a root bone is added to it. If an MMD model's center bone has a vertex group, the center bone is renamed and converted to a lower body bone, followed by adding a new center bone. If an MMD model has no center bone, a center bone is added to it. In these operations, all of the correct bone parent-child relations are also added.
+
+
+
