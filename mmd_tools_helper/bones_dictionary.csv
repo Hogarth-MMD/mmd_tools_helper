@@ -1,0 +1,26 @@
+mmd_english, xna_lara, daz_poser, blender_rigify, sims_2, motion_builder, 3ds_max, type_x, bepu, mmd_japanese, mmd_japaneseLR,project_mirai,manuel_bastioni_lab,makehuman_mhx,sims_3,doa5lr
+root, root ground, , root, auskel, , , , , 全ての親, 全ての親,gblctr,root,,b__ROOT__,
+neck, head neck lower,  neck,spine.004, neck, Neck, Neck, Neck, neck, 首, 首,kl_kubi,neck,neck02,b__Neck__,MOT15_Neck
+head, head neck upper, head,spine.005, head, Head, Head, Head, head, 頭, 頭,cl_kao,head,head,b__Head__,MOT01_Head
+center, root hips, hip,spine, root_rot, Hips, Hips, Hip, , センター, センター,n_hara_cp,pelvis,root,b__ROOT_bind__,MOT00_Hips
+upper body 2, spine upper, chest,spine.002, spine2, Spine2, Chest3, , chest, 上半身2, 上半身2,kl_mune_b_wj,spine02,spine02,b__Spine1__,MOT02_Chest
+upper body, spine lower, abdomen,spine.001, spine0, chest, Chest, Chest1, spine, 上半身, 上半身,j_mune_wj,spine01,spine04,b__Spine0__,MOT16_Waist
+lower body, pelvis, ,hips, , , , , hips, 下半身, 下半身,kl_kosi_etc_wj,,,b__Pelvis__,
+shoulder_L, arm left shoulder 1, lCollar, shoulder.L, l_clavicle, LeftShoulder, LeftCollar, Left Collar, shoulder.L, 左肩, 肩.L,kl_waki_l_wj,clavicle_L,shoulder01.L,b__L_Clavicle__,MOT_*Shoulder.1.L
+arm_L, arm left shoulder 2, lShldr, upper_arm.L, l_upperarm,  LeftUpArm, LeftShoulder, Left Shoulder, uparm.L, 左腕, 腕.L,j_kata_l_wj_cu,upperarm_L,upperarm02.L,b__L_UpperArm__,MOT_*Arm.1.L
+elbow_L, arm left elbow, lForeArm, forearm.L, l_forearm, LeftLowArm, LeftElbow, Left Forearm, loarm.L, 左ひじ, ひじ.L,j_ude_l_wj,lowerarm_L,lowerarm01.L,b__L_Forearm__,MOT_*ForeArm.1.L
+wrist_L, arm left wrist, lHand, hand.L, l_hand, LeftHand, LeftWrist, Left Hand, finger3-1.L,左手首, 手首.L,e_ude_l_cp,hand_L,wrist.L,b__L_Hand__,MOT_*Hand.1.L
+shoulder_R, arm right shoulder 1, rCollar, shoulder.R, r_clavicle, RightShoulder, RightCollar, Right Collar, shoulder.R, 右肩, 肩.R,kl_waki_r_wj,clavicle_R,shoulder01.R,b__R_Clavicle__,MOT_*Shoulder.1.R
+arm_R, arm right shoulder 2, rShldr, upper_arm.R, r_upperarm, RightUpArm, RightShoulder, Right Shoulder, uparm.R, 右腕, 腕.R,j_kata_r_wj_cu,upperarm_R,upperarm02.R,b__R_UpperArm__,MOT_*Arm.1.R
+elbow_R, arm right elbow, rForeArm, forearm.R, r_forearm, RightLowArm, RightElbow, Right Forearm, loarm.R, 右ひじ, ひじ.R,j_ude_r_wj,lowerarm_R,lowerarm01.R,b__R_Forearm__,MOT_*ForeArm.1.R
+wrist_R, arm right wrist, rHand, hand.R, r_hand, RightHand, RightWrist, Right Hand, finger3-1.R,右手首, 手首.R,e_ude_r_cp,hand_R,wrist.R,b__R_Hand__,MOT_*Hand.1.R
+leg_L, leg left thigh, lThigh, thigh.L, l_thigh, LeftUpLeg, LeftHip, Left Thigh, upleg.L, 左足, 足.L,j_momo_l_wj,thigh_L,upperleg01.L,b__L_Thigh__,MOT_*UpLeg.1.L
+knee_L, leg left knee, lShin, shin.L, l_calf, LeftLowLeg, LeftKnee, Left Shin, loleg.L, 左ひざ, ひざ.L,j_sune_l_wj,calf_L,lowerleg01.L,b__L_Calf__,MOT_*Leg.1.L
+ankle_L, leg left ankle, lFoot, foot.L, l_foot, LeftFoot, LeftAnkle, Left Foot, foot.L, 左足首, 足首.L,kl_asi_l_wj_co,foot_L,foot.L,b__L_Foot__,MOT_*Foot.1.L
+leg_R, leg right thigh, rThigh, thigh.R, r_thigh, RightUpLeg, RightHip, Right Thigh, upleg.R, 右足, 足.R,j_momo_r_wj,thigh_R,upperleg01.R,b__R_Thigh__,MOT_*UpLeg.1.R
+knee_R, leg right knee, rShin, shin.R, r_calf, RightLowLeg, RightKnee, Right Shin, loleg.R, 右ひざ, ひざ.R,j_sune_r_wj,calf_R,lowerleg01.R,b__R_Calf__,MOT_*Leg.1.R
+ankle_R, leg right ankle, rFoot, foot.R, r_foot, RightFoot, RightAnkle, Right Foot, foot.R, 右足首, 足首.R,kl_asi_r_wj_co,foot_R,foot.R,b__R_Foot__,MOT_*Foot.1.R
+toe_L, leg left toes, lToe, toe.L, l_toe, LeftToeBase, LeftToe, Left Toe, toe1-1.L, 左つま先, つま先.L,kl_toe_l_wj,toes_L,toe1-1.L,b__L_Toe__,MOT_*Toe.1.L
+toe_R, leg right toes, rToe, toe.R, r_toe, RightToeBase, RightToe, toe1-1.R,Right Toe, 右つま先, つま先.R,kl_toe_r_wj,toes_R,toe1-1.R,b__R_Toe__,MOT_*Toe.1.R
+eye_L, head eyeball left, leftEye, eye.L, l_eye, LeftEye, LeftEye, Left Eye, eye.L, 左目, 目.L,kl_eye_l_wj,,eye.R,b__LeftEye__,OPT_Face_*_eye.0.l
+eye_R, head eyeball right, rightEye, eye.R, r_eye, RightEye, RightEye, Right Eye, eye.R, 右目, 目.R,kl_eye_r_wj,,eye.L,b__RightEye__,OPT_Face_*_eye.0.r
