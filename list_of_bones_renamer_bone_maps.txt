@@ -15,6 +15,7 @@ Manuel Bastioni Lab
 Makehuman mhx
 Sims 3
 DOA5LR (Dead on Arrival 5 Last Round)
+Bip001 Biped
 
 There are 2 drop-down list menus for the source and destination bone maps. With the armature selected to be the active object, press the button to do a mass renaming of bone
 
