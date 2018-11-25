@@ -2,6 +2,9 @@ import bpy
 from . import model
 from . import import_csv
 
+def __items(display_item_frame):
+    return getattr(display_item_frame, 'data', display_item_frame.items)
+
 class MmdToolsDisplayPanelGroupsPanel(bpy.types.Panel):
 	"""Mass add bone names and shape key names to display panel groups"""
 	bl_idname = "OBJECT_PT_mmd_add_display_panel_groups"
@@ -25,7 +28,7 @@ def delete_empty_display_panel_groups(root):
 	bpy.context.scene.objects.active = root
 	for d in range(len(bpy.context.active_object.mmd_root.display_item_frames)-1, 1, -1):
 		#if bpy.context.active_object.mmd_root.display_item_frames[d].name != "Root" and bpy.context.active_object.mmd_root.display_item_frames[d].name != "表情":
-		if len(bpy.context.active_object.mmd_root.display_item_frames[d].items) == 0:
+		if len(__items(bpy.context.active_object.mmd_root.display_item_frames[d])) == 0:
 			bpy.context.active_object.mmd_root.display_item_frames.remove(d)
 
 def clear_display_panel_groups(root):
@@ -66,7 +69,7 @@ def display_panel_groups_from_bone_groups(root, armature_object):
 			group.name = bg
 			group.name_e = bg
 	for bgb in bone_groups_of_bones:
-		item = bpy.context.active_object.mmd_root.display_item_frames[bgb[1]].items.add()
+		item = __items(bpy.context.active_object.mmd_root.display_item_frames[bgb[1]]).add()
 		item.name = bgb[0]
 		item.name_e = bgb[0]
 
@@ -80,8 +83,8 @@ def display_panel_groups_from_shape_keys(mesh_objects_list):
 						shape_key_names.append(s.name)
 		root = model.findRoot(m)
 	for skn in shape_key_names:
-		if skn not in root.mmd_root.display_item_frames["表情"].items.keys():
-			item = root.mmd_root.display_item_frames["表情"].items.add()
+		if skn not in __items(root.mmd_root.display_item_frames["表情"]).keys():
+			item = __items(root.mmd_root.display_item_frames["表情"]).add()
 			item.type = 'MORPH'
 			item.morph_type = 'vertex_morphs'
 			item.name = skn
@@ -89,26 +92,26 @@ def display_panel_groups_from_shape_keys(mesh_objects_list):
 def display_panel_groups_non_vertex_morphs(root):
 	bpy.context.scene.objects.active = root
 	for m in root.mmd_root.bone_morphs:
-		if m.name not in root.mmd_root.display_item_frames["表情"].items.keys():
-			item = root.mmd_root.display_item_frames["表情"].items.add()
+		if m.name not in __items(root.mmd_root.display_item_frames["表情"]).keys():
+			item = __items(root.mmd_root.display_item_frames["表情"]).add()
 			item.type = 'MORPH'
 			item.morph_type = "bone_morphs"
 			item.name = m.name
 	for m in root.mmd_root.material_morphs:
-		if m.name not in root.mmd_root.display_item_frames["表情"].items.keys():
-			item = root.mmd_root.display_item_frames["表情"].items.add()
+		if m.name not in __items(root.mmd_root.display_item_frames["表情"]).keys():
+			item = __items(root.mmd_root.display_item_frames["表情"]).add()
 			item.type = 'MORPH'
 			item.morph_type = "material_morphs"
 			item.name = m.name
 	for m in root.mmd_root.uv_morphs:
-		if m.name not in root.mmd_root.display_item_frames["表情"].items.keys():
-			item = root.mmd_root.display_item_frames["表情"].items.add()
+		if m.name not in __items(root.mmd_root.display_item_frames["表情"]).keys():
+			item = __items(root.mmd_root.display_item_frames["表情"]).add()
 			item.type = 'MORPH'
 			item.morph_type = "uv_morphs"
 			item.name = m.name
 	for m in root.mmd_root.group_morphs:
-		if m.name not in root.mmd_root.display_item_frames["表情"].items.keys():
-			item = root.mmd_root.display_item_frames["表情"].items.add()
+		if m.name not in __items(root.mmd_root.display_item_frames["表情"]).keys():
+			item = __items(root.mmd_root.display_item_frames["表情"]).add()
 			item.type = 'MORPH'
 			item.morph_type = "group_morphs"
 			item.name = m.name
@@ -187,9 +190,9 @@ def display_panel_groups_create(root, armature_object):
 		for g in groups_names_1:
 			for n in g[1]:
 				if n in b:
-					if b not in root.mmd_root.display_item_frames[g[0]].items.keys():
+					if b not in __items(root.mmd_root.display_item_frames[g[0]]).keys():
 						if b not in items_added:
-							item = root.mmd_root.display_item_frames[g[0]].items.add()
+							item = __items(root.mmd_root.display_item_frames[g[0]]).add()
 							item.name = b
 							items_added.append(b)
 
@@ -197,16 +200,16 @@ def display_panel_groups_create(root, armature_object):
 		for g in groups_names_2:
 			for n in g[1]:
 				if n == b:
-					if b not in root.mmd_root.display_item_frames[g[0]].items.keys():
-						item = root.mmd_root.display_item_frames[g[0]].items.add()
+					if b not in __items(root.mmd_root.display_item_frames[g[0]]).keys():
+						item = __items(root.mmd_root.display_item_frames[g[0]]).add()
 						item.name = b
 						items_added.append(b)
 
 	for b in armature_object.data.bones.keys():
 		if b not in items_added:
 			if "shadow" not in b and "dummy" not in b:
-				if b not in root.mmd_root.display_item_frames[g[0]].items.keys():
-					item = root.mmd_root.display_item_frames["Other"].items.add()
+				if b not in __items(root.mmd_root.display_item_frames[g[0]]).keys():
+					item = __items(root.mmd_root.display_item_frames["Other"]).add()
 					item.name = b
 					items_added.append(b)
 
