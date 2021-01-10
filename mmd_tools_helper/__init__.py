@@ -1,7 +1,7 @@
 bl_info = {
 	"name": "MMD tools helper",
 	"author": "Hogarth-MMD",
-	"version": (2, 2),
+	"version": (2, 4),
 	"blender": (2, 79, 0),
 	"location": "View3D > Tool Shelf > MMD Tools Helper",
 	"description": "various mmd_tools helper scripts",
@@ -38,6 +38,7 @@ from . import toon_textures_to_node_editor_shader
 from . import toon_modifier
 from . import reverse_japanese_english
 from . import miscellaneous_tools
+from . import blender_bone_names_to_japanese_bone_names
 
 
 import imp
@@ -55,7 +56,7 @@ imp.reload(toon_textures_to_node_editor_shader)
 imp.reload(toon_modifier)
 imp.reload(reverse_japanese_english)
 imp.reload(miscellaneous_tools)
-
+imp.reload(blender_bone_names_to_japanese_bone_names)
 
 
 
