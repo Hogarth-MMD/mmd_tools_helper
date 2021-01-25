@@ -4,7 +4,7 @@ MMD (MikuMikuDance) English
 MMD (MikuMikuDance) Japanese
 MMD Japanese.L.R (bones renamed to add .L and .R suffixes using an import option of the Blender mmd_tools add-on)
 XNALara
-Daz/Poser
+Daz/Poser/Second Life
 Blender Rigify (names of bones before the complete Rigify rig is generated)
 Sims 2
 Motion Builder
@@ -13,9 +13,12 @@ Bepu full body IK
 Project Mirai
 Manuel Bastioni Lab
 Makehuman mhx
-Sims 3
+Sims 3 (almost the same as Sims4)
 DOA5LR (Dead on Arrival 5 Last Round)
-Bip001 Biped
+Biped Bip001
+Biped 3DS Max
+Biped Source Film Maker
+ValveBiped
+iClone7
 
-There are 2 drop-down list menus for the source and destination bone maps. With the armature selected to be the active object, press the button to do a mass renaming of bone
 

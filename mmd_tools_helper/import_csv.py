@@ -1,6 +1,8 @@
 import bpy
 import csv
 
+# Each row read from the csv file is returned as a list of strings.
+
 def use_csv_bones_dictionary():
 	bones_dictionary = (__file__ + "bones_dictionary.csv").replace("import_csv.py" , "")
 	with open(bones_dictionary, newline='', encoding='utf-8') as csvfile:

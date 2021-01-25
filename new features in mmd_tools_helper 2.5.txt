@@ -1,0 +1,33 @@
+
+New features in mmd_tools_helper 2.5:
+
+1. Added 4 new bonemaps to the bones-renaming operator of mmd_tools_helper:
+
+iClone7
+
+Biped 3DS Max
+Official documentation for the Biped 3DS Max bone map:
+http://help.autodesk.com/view/3DSMAX/2015/ENU/?guid=__files_GUID_BBC1B4FC_FE13_4C06_A20A_BC9BA08C5F93_htm
+example bone names:
+R Clavicle, R UpperArm, R Forearm  
+L Finger1, L Finger11, L Finger12 
+
+Biped Source Film Maker
+Official documentation for the Biped Source Film Maker bone map:
+https://steamcommunity.com/sharedfiles/filedetails/?id=270457747
+example bone names:
+bip_collar_R, bip_upperArm_R, bip_lowerArm_R
+bip_index_0_L, bip_index_1_L, bip_index_2_L
+
+ValveBiped
+Wiki information about the ValveBiped bone map:
+https://wiki.facepunch.com/gmod/ValveBiped_Bones
+example bone names:
+ValveBiped.Bip01_R_Clavicle, ValveBiped.Bip01_R_UpperArm, ValveBiped.Bip01_R_Forearm
+ValveBiped.Bip01_L_Finger1, ValveBiped.Bip01_L_Finger11, ValveBiped.Bip01_L_Finger12, 
+
+
+2. Now the armature diagnostic operator (button) prints a list of all bone names of the active model, followed by the list of missing bone names.
+
+3. Added a new operator (button) which does find and replace mass renaming of bone names. Its panel is located below the "Bones Renamer" panel and above the "Armature Diagnostic" panel. So, for example, you can replace all spaces in all bone names with underscores, or replace all underscores with spaces, and many other possibilities, depending on what you type into the 2 input fields. (The find and replace bones renaming will be limited to selected bones only, by clicking in the "Selected bones only" check box to enable it.) The find and replace bones renaming is NOT case-independent.
+
