@@ -1,24 +1,2 @@
-Instructions to convert a Makehuman MHX model to MMD, using mmd_tools (powroupi fork) and mmd_tools_helper 2.2. Similar steps are followed to convert other types of models to MMD also.
-
-1) Change to object mode.
-2) Choose "Individual Origins" as the center of scaling.
-3) Select the armature object.
-4) Scale the armature X 10.
-5) Apply the scale. (Object, Apply, Scale).
-6) In the mmd_tools panel, click on the "Convert Model" button.
-7) Click OK.
-8) In the mmd_tools_helper panel, do a mass renaming of bones from "Makehuman MHX bone names" to "MMD English bone names".
-9) Take a look in the Blender System Console to see if there are any bone names missing from the renamed bones of the armature.
-10) The root and lower body bones are missing, because the Makehuman MHX armature does not have any bones which are equivalent to those 2 MMD armature bones.
-11) In the Miscellaneous Tools Panel of mmd_tools_helper, select "Correct MMD Root and Center bones", then click on the "Execute Function" button. Please note that this operator will only run on an mmd_english armature, which is why we previously renamed the bones to MMD English.
-12) Take a look in the Blender System console to see a message which lists the changes which were just made to your model. It should say "Added MMD root bone."
-13) Now, in the mmd_tools_helper panel, do a mass renaming of bones from MMD English to MMD Japanese.
-14) To make this model compatible with VMD animations or VPD poses, MMD leg and foot IK must be added to it, but the legs of this model have 4 pairs of double leg bones, which are not compatible with MMD leg-foot IK. To remedy this, select each pair of bones, one at a time, and then run the "Combine 2 bones" operator on it (located in the Miscellaneous Tools Panel.)
-15) Check the Blender System Console to see if these 4 bones-combining operations have been executed successfully. You should also be able to see visually the bones-combining in Blender.
-16) In the mmd_tools_helper panel, click "Add leg and foot IK to MMD model".
-17) If you want to pose and animate your model,with vpd or vmd files, you can do that now, (but posing and animation of MMD "lower body" bone will be absent from your model).
-18) If you want to export this model to a .pmx file, the next step is to add display panel groups to it. In the "Create Display Panel Groups and Add Items" panel of the mmd_tools_helper panel, select "Add Display Panel Groups", then click the "Add Display Panel items" button.
-19) Click "File", "Export", "MikuMikuDance model (.pmx)" to export the model from Blender.
-20) After exporting the model from Blender, you may need to do some correction and editing of the model's materials in PMD editor or PMX editor. mmd_tools does not have any export option to avoid exporting sphere textures. The Makehuman MHX model did not have any sphere textures, so your exported model may have disabled or incorrect sphere textures, which you need to manually correct in PMD editor or PMX editor.
-21) Also if you want to add physics to the exported model, you will need to do that in PMD Editor or PMX editor.
-22) And there you are! Wasn't that easy and fun?
+See this pdf tutorial:
+"Tutorial_ How to convert a 3D character model to MMD.pdf"

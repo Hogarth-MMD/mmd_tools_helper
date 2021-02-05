@@ -1,0 +1,9 @@
+
+These tutorials are pdf copies of the tutorials from the mmd_tools Github wiki.
+
+Links to mmd_tools Tutorials
+https://github.com/powroupi/blender_mmd_tools/wiki/Links-to-mmd_tools-Tutorials
+
+
+mmd_tools github wiki
+https://github.com/powroupi/blender_mmd_tools/wiki

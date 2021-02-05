@@ -1,0 +1,7 @@
+
+MMD standard bones with leg foot IK.pmx
+(The MMD standard armature, including the 7 bones which should not have any vertex group)
+
+MMD standard bones for automatic vertex weights.pmx
+(The MMD standard armature, including only those bones which should each have a vertex group.) 
+This armature can be used when automatically adding vertex weights to a model, using the automatic weights features of Blender or Metasequoia.
