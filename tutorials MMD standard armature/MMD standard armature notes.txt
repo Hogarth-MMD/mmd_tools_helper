@@ -1,0 +1,45 @@
+
+In an MMD standard armature:
+
+The center(センター) bone does not have any vertex group. 
+The root(全ての親) bone (aka mother bone, master parent bone) does not have any vertex group.
+The eyes(両目) bone does not have any vertex group.
+The 4 leg and foot IK bones also do not have any vertex group ("leg IK_L", "左足ＩＫ"),("leg IK_R", "右足ＩＫ"),("toe IK_L", "左つま先ＩＫ"),("toe IK_R", "右つま先ＩＫ").
+Every other bone in an MMD standard armature has a vertex group.
+ 
+
+In an MMD standard armature:
+
+The root(全ての親) bone is parent of the center(センター) bone. The root bone is located at (0,0,0). The center(センター) bone is usually located half-way between a character's knees and thighs, but it can be located higher than that without damaging an animation.
+
+The center(センター) bone is parent of the upper body(上半身) bone and the center(センター) bone is also parent of the lower body(下半身) bone. The upper body(上半身) and lower body(下半身) bones are located near to a character's waist. A character's waist is thus being imagined and interpreted as similar to a joint (such as a knee or elbow joint).
+The upper body(上半身) bone is parent of the neck(首) and shoulder(左肩, 右肩) bones.
+The lower body(下半身) bone is parent of the leg(左足, 右足) bones (= thigh bones).
+The head(頭) bone is parent of the 2 eye bones ("eye_L", "左目"),("eye_R", "右目"), and the rotations of the eye bones are constrained to the rotation of the eyes("両目") bone.
+
+In an MMD standard armature:
+
+The arms are rotated downward at an approximately 45 degree angle in an A-pose. (In most other armature types, the character's rest pose is a T-pose with the character's arms extending at a 90-degree angle from the body.)
+
+Here are a few Japanese characters which you can easily remember:
+左, left
+右, right
+上, upper (or go up)
+下, lower (or go down)
+
+In an MMD standard armature, these bones should be enabled for movement:
+root(全ての親)
+center(センター)
+all 4 leg and foot IK bones
+
+
+In the .pmd and .pmx file formats, each bone is a single point. In Blender and some other software, a bone may have 2 points, a head/base and a tail/tip. For visualization purposes, the .pmd file format uses hidden tip bones to show a bone's tail/tip. For visualization purposes, the .pmx file format uses a display destination x,y,z co-ordinate or the location of another bone, to display the tail/tip of that bone.
+
+Is it possible for an MMD character model to have some additional non-standard bones without messing up a VMD motion?:
+Yes, it is possible. Here are a few examples:
+arm twist bones, one or two additional upper body bones, an additional thumb bone.
+
+You should look at the parent-child relations of the bones of a standard MMD armature. If bone A is child of bone B in a standard MMD armature, and you insert another bone, so that bone A is the child of the child of bone B, that should not cause an incompatibility problem with any VMD motions. 
+The exception to that is MMD leg-foot IK. Leg twist bones and other non-standard leg or foot bones, with few exceptions, make a mess out of MMD leg-foot IK.
+
+

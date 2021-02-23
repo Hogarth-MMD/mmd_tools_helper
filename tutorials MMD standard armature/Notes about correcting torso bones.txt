@@ -1,0 +1,43 @@
+
+HOW TO SOLVE ISSUES WITH CENTER BONE and LOWER BODY BONE WHEN CONVERTING MODELS AND ANIMATIONS
+
+Japanese names of MMD center and lower body bones:
+center(センター)
+lower body(下半身)
+
+Many character models and character animations of other software do not have a bone which is equivalent to the MMD lower body(下半身) bone. Typically they have a bone which is like an MMD center bone and an MMD lower body bone both combined into one bone. When an armature type has a "combined center/lower body" bone, mmd_tools_helper renames that bone to or from the MMD center(センター) bone.
+
+How to test if a bone is similar to an MMD center(センター) bone or an MMD lower body(下半身) bone:
+
+If the character does not have any leg-foot IK, you can select this bone and when you rotate it, the entire character rotates around that bone, which shows that it is similar to an MMD center bone. But if you rotate that bone and the character's lower body rotates, but its upper body does not rotate, then you can deduce that it is similar to an MMD lower body bone, but it is NOT similar to an MMD center bone.
+
+If you are converting a model, and that model has a vertex group in the model's pelvis area with the same name as that bone, you can deduce that it is similar to an MMD lower body bone. If you are converting a model, and that bone does not have any same-named vertex group, then you can deduce that it is similar to an MMD center bone, but it is NOT similar to an MMD lower body bone.
+
+To fix this issue when converting a model to MMD:
+The bone which is a combined center/lower body bone should be renamed to lower body(下半身) followed by adding a center(センター) bone and editing the parent-child relations of the root, center, lower body, upper body and 2 leg(thigh) bones. The correct parent-child relations are listed in the tutorial "MMD standard armature notes" in the same folder as this tutorial. For visualization purposes, it is good to give the MMD lower body bone a tail pointing down.
+
+When converting a .bvh or other animation to MMD which does not have any MMD lower body bone animation, the lower body bone of the MMD model will not be animated. I don't have a solution for this issue yet.
+
+To fix this issue when converting a model from MMD to a different model type which combines the center and lower body bones as one bone:
+Delete the MMD center bone. Rename the MMD lower body bone to the name of the "combined center/lower body" bone. Edit the parent-child relations of the bones. Typically the "combined center/lower body" bone should become parent of the thigh bones and parent of a spine/upper body bone and child of a root bone, if that armature type has a root bone.
+
+When converting a .vmd or other animation from MMD, models of other software which don't have any lower body bone will not be animated by the MMD lower body bone animation. I don't have a solution for this issue yet.
+
+
+HOW TO SOLVE ISSUES WITH MODELS OR ANIMATIONS WHICH HAVE MORE THAN 2 SPINE(UPPER BODY) BONES
+
+For example, each of these bone maps has 4 spine bones:
+Biped Bip001, Biped 3DS Max, Biped Source Film Maker, Valve Biped. 
+In Biped 3DS Max, for example, they are named spine, spine1, spine2, spine3. 
+
+The bones renamer operator of mmd_tools_helper renames the *spine1 bone of these armatures as being equivalent of the MMD upper body(上半身) bone, which should be the correct bone renaming in most cases. 
+
+But when you are renaming the bones of armatures which have more than 2 spine/upper body bones, you should also do a manual test to see if the upper body(上半身) bone has been renamed correctly:
+
+The MMD upper body(上半身) bone is the bone that bends a character's body above the waist. You can check to see which spine bone is bending a character's body above the waist by simply selecting and rotating each spine(upper body) bone. 
+
+
+
+
+
+Typically in these armatures, the *spine bone is parent of the 2 thigh bones, but the *spine bone does not bend the character's body above the waist, so it is not equivalent to the MMD upper body bone. It is possible, however, that the maker of a model or animation does not follow that convention, in which case you need to manually test and rename spine(upper body) bones to be compatible with mmd_tools_helper bones renaming, or to have the correct naming of the MMD upper body bone(s). 

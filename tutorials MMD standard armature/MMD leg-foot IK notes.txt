@@ -1,0 +1,54 @@
+
+What is IK and how should leg/foot IK be set up for a .pmx model?
+
+Forward Kinetics (FK):
+You rotate a shoulder bone and the entire arm rotates around the shoulder bone's location.
+You rotate a leg/thigh bone and the entire leg rotates around the rotation point of the leg/thigh bone.
+
+Inverse Kinetics (IK):
+You move a character's hand to a specific location and the IK solver of your 3D animation software calculates the correct rotation of elbow and shoulder bones to harmonize with the hand's location.
+You move a character's foot to a specific location and the IK solver of your 3D animation software calculates the correct rotation of thigh and knee bones to harmonize with the foot's location.
+
+Normally an MMD model does not have any arm/hand IK and adding hand/arm IK may cause incompatibility with VMD motions. 
+The many free VMD motions which you can download from the internet almost always require that a model must have MMD leg/foot IK, for the model to be correctly animated by the VMD motion. Exceptions to that are motions which have been converted to VMD from other software, and which require turning off a character's leg/foot IK when applying the motion to a character in MMD.
+
+Blender and PMX editor use different terminology which may be a source of confusion. A .pmx IK bone is the same as a Blender IK target bone. The "Target" bone of a .pmx IK bone is NOT the same as a Blender IK target bone. For this tutorial, the .pmx editor terminology is used.
+(.pmx IK bone = Blender IK target bone)
+
+In PMD/PMX editor leg/foot IK constraints are set up on the 4 leg/foot IK bones. This is different from Blender. In Blender, IK constraints are set up on the bones which are being constrained, not on the IK target bones.
+ 
+ 
+In a standard MMD .pmx armature, the IK settings of the 2(left and right) foot/toe IK bones ("toe IK_L", "左つま先ＩＫ"),("toe IK_R", "右つま先ＩＫ") should be as follows:
+
+The IK button must be enabled.
+Target should be the index of the (left or right) toe (左つま先 or 右つま先) bone.
+The one link bone should be the (left or right) ankle (左足首 or 右足首) bone.
+Loop count: 3 works fine. More than 3 is okay, but unnecessary.
+Unit angle: 229.1831 (229.1831 degrees = 4 radians, 1 radian = 180/pi degrees)
+Angular limits should not be enabled.
+
+
+In a standard MMD .pmx armature, the IK settings of the 2(left and right) leg IK bones ("leg IK_L", "左足ＩＫ"),("leg IK_R", "右足ＩＫ") should be as follows:
+
+The IK button must be enabled.
+Target should be the index of the (left or right) ankle(左足首 or 右足首) bone.
+The 2 Link bones should be the (left or right) knee (左ひざ or 右ひざ) bone and the (left or right) leg/thigh (左足 or 右足) bone.
+Loop count: 40 works fine, but other values are possible.
+Unit angle: 114.5916 (114.5916 degrees = 2 radians, 1 radian = 180/pi degrees)
+Angular limits should not be enabled on the leg/thigh(左足 or 右足) bone.
+Angular limits must be enabled on the knee bone. The recommended angular limits are:
+x -180  -0.5, y 0 0, z 0 0  
+These limits tell the MMD IK solver along which axis the knees should bend. These angular limits mean that the knee bones should never rotate along their y or z axis, and that the knee bone should be rotated backward a minimum of 0.5 degrees and a maximum of 180 degrees.
+
+To add a Link bone to an IK bone, select it, right click to get the context menu, from the context menu select Index copy, then paste that into the Link box of the IK bone.
+
+The Loop count is the number of iterations which the MMD IK solver uses when calculating the bone rotation. A greater Loop number (number of iterations) gives a more correct result, but slightly slower speed of calculation. The larger is the number of Link bones, the greater is the number of Loops/iterations which are needed to calculate the bone rotation.
+ 
+What is the IK unit angle? Our team of mmd_tools developers did not know the answer to that question. The recommended values above are derived by looking at the IK unit angle values of various .pmx models which have been made by MMD modelers, and also by looking at the IK unit angle values which are assigned by PMX editor when converting a model from .pmd to .pmx. The correctness of the values listed above for "Loop" and "Unit angle" can be tested by converting a model from .pmd to .pmx in PMD/PMX editor.
+
+The correct locations of IK bones is essential. 
+A leg IK bone ("leg IK_L", "左足ＩＫ") or ("leg IK_R", "右足ＩＫ") must be located at the same location as the ankle (左足首 or 右足首) bone. To see and select the leg IK bone more easily, you should give it a tail located backward from the ankle bone.
+A foot/toe IK bone ("toe IK_L", "左つま先ＩＫ") or ("toe IK_R", "右つま先ＩＫ") must be located at the same location as the toe (左つま先 or 右つま先) bone. To see and select the foot/toe IK bone more easily, you should give it a tail located downward from the toe bone.
+
+If you are using mmd_tools_helper, you can add MMD leg/foot IK to a model by simply clicking the "Add leg and foot IK to MMD model" button. If the model already has leg/foot IK, that IK is removed and new MMD-compatible leg/foot IK is added.
+ 
