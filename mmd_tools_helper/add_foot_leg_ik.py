@@ -1,5 +1,7 @@
 import bpy
 import math
+
+from . import register_wrap
 from . import model
 
 # def armature_diagnostic():
@@ -32,12 +34,13 @@ from . import model
 		# if b in bpy.context.active_object.data.bones.keys():
 			# print('This armature appears to already have IK bones. This bone seems to be an IK bone:', '\n', b)
 
+@register_wrap
 class Add_MMD_foot_leg_IK_Panel(bpy.types.Panel):
 	"""Add foot and leg IK bones and constraints to MMD model"""
 	bl_idname = "OBJECT_PT_mmd_add_foot_leg_ik"
 	bl_label = "Add foot leg IK to MMD model"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -372,7 +375,7 @@ def main(context):
 
 	bpy.context.active_object.data.draw_type = 'OCTAHEDRAL'
 
-
+@register_wrap
 class Add_MMD_foot_leg_IK(bpy.types.Operator):
 	"""Add foot and leg IK bones and constraints to MMD model"""
 	bl_idname = "object.add_foot_leg_ik"
@@ -386,16 +389,3 @@ class Add_MMD_foot_leg_IK(bpy.types.Operator):
 		clear_IK(context)
 		main(context)
 		return {'FINISHED'}
-
-def register():
-	bpy.utils.register_class(Add_MMD_foot_leg_IK)
-	bpy.utils.register_class(Add_MMD_foot_leg_IK_Panel)
-
-
-def unregister():
-	bpy.utils.unregister_class(Add_MMD_foot_leg_IK)
-	bpy.utils.unregister_class(Add_MMD_foot_leg_IK_Panel)
-
-
-if __name__ == "__main__":
-	register()

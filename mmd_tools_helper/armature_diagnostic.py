@@ -1,14 +1,16 @@
 import bpy
+
+from . import register_wrap
 from . import import_csv
 from . import model
 
-
+@register_wrap
 class ArmatureDiagnosticPanel(bpy.types.Panel):
 	"""Armature Diagnostic panel"""
 	bl_label = "Armature Diagnostic Panel"
 	bl_idname = "OBJECT_PT_armature_diagnostic"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -51,7 +53,7 @@ def main(context):
 		print("Please note that these 3 bones are MMD semi-standard bones and are not essential in an MMD armature:")
 		print("upper body 2, thumb0_L, thumb0_R")
 
-
+@register_wrap
 class ArmatureDiagnostic(bpy.types.Operator):
 	"""Tooltip"""
 	bl_idname = "mmd_tools_helper.armature_diagnostic"
@@ -72,23 +74,3 @@ class ArmatureDiagnostic(bpy.types.Operator):
 		print()
 		main(context)
 		return {'FINISHED'}
-
-
-
-def register():
-	bpy.utils.register_class(ArmatureDiagnosticPanel)
-	bpy.utils.register_class(ArmatureDiagnostic)
-
-
-def unregister():
-	bpy.utils.unregister_class(ArmatureDiagnosticPanel)
-	bpy.utils.unregister_class(ArmatureDiagnostic)
-
-
-
-if __name__ == "__main__":
-	register()
-
-
-
-	

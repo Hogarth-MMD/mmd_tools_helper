@@ -1,4 +1,6 @@
 import bpy
+
+from . import register_wrap
 from . import model
 
 
@@ -6,12 +8,13 @@ from . import model
 # So the length of the list of pixels is 4 X number of pixels
 # pixels are in left-to-right rows from bottom left to top right of image
 
+@register_wrap
 class MMDToonTexturesToNodeEditorShaderPanel(bpy.types.Panel):
 	"""Sets up nodes in Blender node editor for rendering toon textures"""
 	bl_idname = "OBJECT_PT_mmd_toon_render_node_editor"
 	bl_label = "MMD toon textures render using node editor "
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -251,7 +254,7 @@ def main(context):
 
 
 
-
+@register_wrap
 class MMDToonTexturesToNodeEditorShader(bpy.types.Operator):
 	"""Sets up nodes in Blender node editor for rendering toon textures"""
 	bl_idname = "mmd_tools_helper.mmd_toon_render_node_editor"
@@ -272,19 +275,3 @@ class MMDToonTexturesToNodeEditorShader(bpy.types.Operator):
 			# create_default_material_nodes(context)
 			main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MMDToonTexturesToNodeEditorShader)
-	bpy.utils.register_class(MMDToonTexturesToNodeEditorShaderPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MMDToonTexturesToNodeEditorShader)
-	bpy.utils.unregister_class(MMDToonTexturesToNodeEditorShaderPanel)
-
-
-if __name__ == "__main__":
-	register()
-
-

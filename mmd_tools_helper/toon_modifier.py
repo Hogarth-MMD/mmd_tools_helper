@@ -1,15 +1,18 @@
 import bpy
+
+from . import register_wrap
 from . import model
 
  # blend_type
 	# Type:	enum in ["MIX", "ADD", "MULTIPLY", "SUBTRACT", "SCREEN", "DIVIDE", "DIFFERENCE", "DARKEN", "LIGHTEN", "OVERLAY", "DODGE", "BURN", "HUE", "SATURATION", "VALUE", "COLOR", "SOFT_LIGHT", "LINEAR_LIGHT"], default ‘MIX’
 
+@register_wrap
 class MMDToonModifierPanel(bpy.types.Panel):
 	"""User can modify the rendering of toon texture color"""
 	bl_idname = "OBJECT_PT_mmd_toon_modifier"
 	bl_label = "MMD toon modifier"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -38,7 +41,7 @@ def main(context):
 					n.blend_type = bpy.context.scene.ToonModifierBlendType
 
 
-
+@register_wrap
 class MMDToonModifier(bpy.types.Operator):
 	"""User can modify the rendering of toon texture color"""
 	bl_idname = "mmd_tools_helper.toon_modifier"
@@ -55,17 +58,3 @@ class MMDToonModifier(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MMDToonModifier)
-	bpy.utils.register_class(MMDToonModifierPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MMDToonModifier)
-	bpy.utils.unregister_class(MMDToonModifierPanel)
-
-
-if __name__ == "__main__":
-	register()

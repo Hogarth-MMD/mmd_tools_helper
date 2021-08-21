@@ -3,12 +3,15 @@
 import bpy
 import math
 
+from . import register_wrap
+
+@register_wrap
 class MMDViewPanel(bpy.types.Panel):
 	"""Camera and Grid to be same as MikuMikuDance"""
 	bl_idname = "OBJECT_PT_mmd_view"
 	bl_label = "MMD View"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -85,7 +88,7 @@ def main(context):
 
 
 
-
+@register_wrap
 class MMDView(bpy.types.Operator):
 	"""Camera and Grid to be same as MikuMikuDance"""
 	bl_idname = "mmd_tools_helper.mmd_view"
@@ -98,17 +101,3 @@ class MMDView(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MMDView)
-	bpy.utils.register_class(MMDViewPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MMDView)
-	bpy.utils.unregister_class(MMDViewPanel)
-
-
-if __name__ == "__main__":
-	register()

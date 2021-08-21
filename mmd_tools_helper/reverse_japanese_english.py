@@ -1,11 +1,14 @@
 import bpy
 
+from . import register_wrap
+
+@register_wrap
 class ReverseJapaneseEnglishPanel(bpy.types.Panel):
 	"""Sets up nodes in Blender node editor for rendering toon textures"""
 	bl_idname = "OBJECT_PT_reverse_japanese_english"
 	bl_label = "Reverse Japanese English names"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -55,6 +58,7 @@ def main(context):
 					vm.name_e = name_j
 
 
+@register_wrap
 class ReverseJapaneseEnglish(bpy.types.Operator):
 	"""Reverses Japanese and English names of shape keys, materials, bones"""
 	bl_idname = "mmd_tools_helper.reverse_japanese_english"
@@ -63,16 +67,3 @@ class ReverseJapaneseEnglish(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-def register():
-	bpy.utils.register_class(ReverseJapaneseEnglish)
-	bpy.utils.register_class(ReverseJapaneseEnglishPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(ReverseJapaneseEnglishShader)
-	bpy.utils.unregister_class(ReverseJapaneseEnglishShaderPanel)
-
-
-if __name__ == "__main__":
-	register()

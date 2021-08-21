@@ -1,18 +1,21 @@
 import bpy
 
+from . import register_wrap
+
+@register_wrap
 class MMDLampSetupPanel(bpy.types.Panel):
 	"""One-click Lamp Setup for mmd_tools"""
 	bl_idname = "OBJECT_PT_mmd_lamp_setup"
 	bl_label = "MMD Lamp Setup"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
 		layout = self.layout
 		row = layout.row()
 
-		row.label(text="MMD Lamp", icon="LAMP")
+		row.label(text="MMD Lamp", icon="LAMP" if bpy.app.version < (2,80,0) else "LIGHT")
 		row = layout.row()
 		row.operator("mmd_tools_helper.mmd_lamp_setup", text = "MMD Lamp")
 		row = layout.row()
@@ -76,6 +79,7 @@ def main(context):
 				# o.data.use_auto_clip_end = True
 				# o.data.shadow_color = (0, 0, 0)
 
+@register_wrap
 class MMDLampSetup(bpy.types.Operator):
 	"""One-click Lamp Setup for mmd_tools"""
 	bl_idname = "mmd_tools_helper.mmd_lamp_setup"
@@ -88,18 +92,3 @@ class MMDLampSetup(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MMDLampSetup)
-	bpy.utils.register_class(MMDLampSetupPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MMDLampSetup)
-	bpy.utils.unregister_class(MMDLampSetupPanel)
-
-
-if __name__ == "__main__":
-	register()
-

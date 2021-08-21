@@ -1,13 +1,15 @@
 import bpy
+
+from . import register_wrap
 from . import model
 
-
+@register_wrap
 class MiscellaneousToolsPanel(bpy.types.Panel):
 	"""Miscellaneous Tools panel"""
 	bl_label = "Miscellaneous Tools Panel"
 	bl_idname = "OBJECT_PT_miscellaneous_tools"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -191,7 +193,7 @@ def main(context):
 		correct_root_center()
 
 
-
+@register_wrap
 class MiscellaneousTools(bpy.types.Operator):
 	"""Miscellanous Tools"""
 	bl_idname = "mmd_tools_helper.miscellaneous_tools"
@@ -206,21 +208,3 @@ class MiscellaneousTools(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MiscellaneousToolsPanel)
-	bpy.utils.register_class(MiscellaneousTools)
-
-
-def unregister():
-	bpy.utils.unregister_class(MiscellaneousToolsPanel)
-	bpy.utils.unregister_class(MiscellaneousTools)
-
-
-if __name__ == "__main__":
-	register()
-
-
-
-	
