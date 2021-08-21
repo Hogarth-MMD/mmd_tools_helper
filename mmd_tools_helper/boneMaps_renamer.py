@@ -1,15 +1,18 @@
 
 
 import bpy
+
+from . import register_wrap
 from . import model
 from . import import_csv
 
+@register_wrap
 class BonesRenamerPanel_MTH(bpy.types.Panel):
 	"""Creates the Bones Renamer Panel in a VIEW_3D TOOLS tab"""
 	bl_label = "Bones Renamer"
 	bl_idname = "OBJECT_PT_bones_renamer_MTH"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -117,6 +120,7 @@ def main(context):
 	bpy.ops.pose.select_all(action='SELECT')
 
 
+@register_wrap
 class BonesRenamer(bpy.types.Operator):
 	"""Mass bones renamer for armature conversion"""
 	bl_idname = "object.bones_renamer"
@@ -135,17 +139,3 @@ class BonesRenamer(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(BonesRenamer)
-	bpy.utils.register_class(BonesRenamerPanel_MTH)
-
-
-def unregister():
-	bpy.utils.unregister_class(BonesRenamer)
-	bpy.utils.unregister_class(BonesRenamerPanel_MTH)
-
-
-if __name__ == "__main__":
-	register()

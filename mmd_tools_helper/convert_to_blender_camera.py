@@ -1,11 +1,14 @@
 import bpy
 
+from . import register_wrap
+
+@register_wrap
 class MMDCameraToBlenderCameraPanel(bpy.types.Panel):
 	"""Convert MMD cameras back to Blender cameras"""
 	bl_idname = "OBJECT_PT_mmd_camera_to_blender_camera"
 	bl_label = "Convert MMD Cameras to Blender cameras"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -39,6 +42,7 @@ def main(context):
 			bpy.context.scene.objects.unlink(camera.parent)
 			bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
 
+@register_wrap
 class MMDCameraToBlenderCamera(bpy.types.Operator):
 	"""Convert MMD cameras back to Blender cameras"""
 	bl_idname = "mmd_tools_helper.mmd_camera_to_blender_camera"
@@ -51,17 +55,3 @@ class MMDCameraToBlenderCamera(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MDCameraToBlenderCamera)
-	bpy.utils.register_class(MMDCameraToBlenderCameraPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MDCameraToBlenderCamera)
-	bpy.utils.unregister_class(MMDCameraToBlenderCameraPanel)
-
-
-if __name__ == "__main__":
-	register()

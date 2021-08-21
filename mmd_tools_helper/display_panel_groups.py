@@ -1,16 +1,19 @@
 import bpy
+
+from . import register_wrap
 from . import model
 from . import import_csv
 
 def __items(display_item_frame):
     return getattr(display_item_frame, 'data', display_item_frame.items)
 
+@register_wrap
 class MmdToolsDisplayPanelGroupsPanel(bpy.types.Panel):
 	"""Mass add bone names and shape key names to display panel groups"""
 	bl_idname = "OBJECT_PT_mmd_add_display_panel_groups"
 	bl_label = "Create Display Panel Groups and Add Items"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -239,6 +242,7 @@ def main(context):
 		display_panel_groups_non_vertex_morphs(root)
 		delete_empty_display_panel_groups(root)
 
+@register_wrap
 class MmdToolsDisplayPanelGroups(bpy.types.Operator):
 	"""Mass add bone names and shape key names to display panel groups"""
 	bl_idname = "object.add_display_panel_groups"
@@ -253,16 +257,3 @@ class MmdToolsDisplayPanelGroups(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-def register():
-	bpy.utils.register_class(MmdToolsDisplayPanelGroups)
-	bpy.utils.register_class(MmdToolsDisplayPanelGroupsPanel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MmdToolsDisplayPanelGroups)
-	bpy.utils.unregister_class(MmdToolsDisplayPanelGroupsPanel)
-
-
-if __name__ == "__main__":
-	register()

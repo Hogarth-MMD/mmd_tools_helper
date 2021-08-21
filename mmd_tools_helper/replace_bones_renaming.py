@@ -1,29 +1,32 @@
 
 import bpy
+
+from . import register_wrap
 from . import model
 
+@register_wrap
 class ReplaceBonesRenamingPanel(bpy.types.Panel):
 	"""Replace Bones Renaming panel"""
 	bl_label = "Replace bones renaming panel"
 	bl_idname = "OBJECT_PT_replace_bones_renaming"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
 		layout = self.layout
 		row = layout.row()
-		row.label("Find this string in bone names:")
+		row.label(text="Find this string in bone names:")
 		row = layout.row()
 		row.prop(context.scene,"find_bone_string")
 		row = layout.row()
-		row.label("Replace it with this string:")
+		row.label(text="Replace it with this string:")
 		row = layout.row()
 		row.prop(context.scene,"replace_bone_string")
 		row = layout.row()
 		row.prop(context.scene, "bones_all_or_selected")
 		row = layout.row()
-		row.label("Selected bones only")
+		row.label(text="Selected bones only")
 		row = layout.row()
 		row.operator("mmd_tools_helper.replace_bones_renaming", text = "Find and replace a string in bone names")
 		row = layout.row()
@@ -41,6 +44,7 @@ def main(context):
 				b.name = b.name.replace(bpy.context.scene.find_bone_string, bpy.context.scene.replace_bone_string)
 
 
+@register_wrap
 class ReplaceBonesRenaming(bpy.types.Operator):
 	"""Find and replace mass renaming of bones"""
 	bl_idname = "mmd_tools_helper.replace_bones_renaming"
@@ -59,19 +63,3 @@ class ReplaceBonesRenaming(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-
-def register():
-	bpy.utils.register_class(ReplaceBonesRenamingPanel)
-	bpy.utils.register_class(ReplaceBonesRenaming)
-
-
-def unregister():
-	bpy.utils.unregister_class(ReplaceBonesRenamingPanel)
-	bpy.utils.unregister_class(ReplaceBonesRenaming)
-
-
-
-if __name__ == "__main__":
-	register()

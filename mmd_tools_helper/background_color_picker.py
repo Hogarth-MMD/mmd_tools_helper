@@ -1,12 +1,15 @@
 import bpy
 import sys
 
+from . import register_wrap
+
+@register_wrap
 class MMDBackgroundColorPicker_Panel(bpy.types.Panel):
 	"""Selects world background color and a contrasting text color"""
 	bl_idname = "OBJECT_PT_mmd_background_color_picker"
 	bl_label = "MMD background color picker"
 	bl_space_type = "VIEW_3D"
-	bl_region_type = "TOOLS"
+	bl_region_type = "TOOLS" if bpy.app.version < (2,80,0) else "UI"
 	bl_category = "mmd_tools_helper"
 
 	def draw(self, context):
@@ -31,6 +34,7 @@ def main(context):
 
 	bpy.context.user_preferences.themes[0].view_3d.space.text_hi = (round(1-bpy.context.scene.BackgroundColor[0]), round(1-bpy.context.scene.BackgroundColor[1]),round(1-bpy.context.scene.BackgroundColor[2]))
 
+@register_wrap
 class MMDBackgroundColorPicker(bpy.types.Operator):
 	"""Selects world background color and a contrasting text color"""
 	bl_idname = "mmd_tools_helper.background_color_picker"
@@ -42,17 +46,3 @@ class MMDBackgroundColorPicker(bpy.types.Operator):
 	def execute(self, context):
 		main(context)
 		return {'FINISHED'}
-
-
-def register():
-	bpy.utils.register_class(MMDBackgroundColorPicker)
-	bpy.utils.register_class(MMDBackgroundColorPicker_Panel)
-
-
-def unregister():
-	bpy.utils.unregister_class(MMDBackgroundColorPicker)
-	bpy.utils.register_class(MMDBackgroundColorPicker_Panel)
-
-
-if __name__ == "__main__":
-	register()
